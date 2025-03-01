@@ -1,5 +1,7 @@
 package com.atguigu.order;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  * @PackageName: com.atguigu.order
  * @ClaseName: OrderMainApplication
