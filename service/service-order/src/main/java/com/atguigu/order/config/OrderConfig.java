@@ -1,5 +1,8 @@
 package com.atguigu.order.config;
 
+
+import feign.Logger;
+import feign.Retryer;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,5 +24,18 @@ public class OrderConfig {
     @LoadBalanced //基于注解的负载均衡
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+
+    //feign日志
+    @Bean
+    Logger.Level feignLogLevel() {
+        return Logger.Level.FULL;
+    }
+
+    //feign 请求重试
+    @Bean
+    Retryer retryer() {
+        return new Retryer.Default();
     }
 }
