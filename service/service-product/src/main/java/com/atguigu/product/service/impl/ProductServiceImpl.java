@@ -27,4 +27,8 @@ public class ProductServiceImpl implements ProductService {
         product.setNum(2);
         return product;
     }
+
+    private void test22(){
+        System.out.println("111");
+    }
 }
