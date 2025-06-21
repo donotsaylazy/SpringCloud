@@ -4,6 +4,7 @@ package com.atguigu.order.service.impl;
 import com.alibaba.nacos.shaded.io.grpc.LoadBalancer;
 import com.atgui.order.bean.Order;
 import com.atgui.product.bean.Product;
+import com.atguigu.order.feign.ProductFeignClient;
 import com.atguigu.order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,14 @@ public class OrderServiceImpl implements OrderService {
     LoadBalancerClient loadBalancerClient;
 
 
+    @Autowired
+    ProductFeignClient productFeignClient;
+
+
     @Override
     public Order createOrder(Long productId, Long userId) {
         Order order = new Order();
-        Product productFromRemote = getProductFromRemoteWithLoadBalanceAnnotation(productId);
+        Product productFromRemote = productFeignClient.getProductById(productId);
         order.setId(1l);
         //总金额
         order.setTotalAmount(productFromRemote.getPrice().multiply(new BigDecimal(productFromRemote.getNum())));

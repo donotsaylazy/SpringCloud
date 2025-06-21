@@ -1,6 +1,7 @@
 package com.atguigu.order.controller;
 
 import com.atgui.order.bean.Order;
+import com.atguigu.order.properties.OrderProperties;
 import com.atguigu.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date: 2025/3/10 14:26
  * @params *@params $
  */
-@RefreshScope
+//@RefreshScope
 @RestController
 public class OrderController {
 
@@ -26,15 +27,12 @@ public class OrderController {
     OrderService orderService;
 
 
-    @Value("${order.timeout}")
-    String orderTimeout;
-
-    @Value("${order.auto-confirm}")
-    String orderAutoConfirm;
+    @Autowired
+    OrderProperties orderProperties;
 
     @GetMapping("/getconfig")
     public String getConfig() {
-        return "orderTimeout:" + orderTimeout + "orderAutoConfirm:" + orderAutoConfirm;
+        return "orderTimeout:" + orderProperties.getTimeout() + "——orderAutoConfirm:" + orderProperties.getAutoConfirm();
     }
 
     @GetMapping("/create" )
