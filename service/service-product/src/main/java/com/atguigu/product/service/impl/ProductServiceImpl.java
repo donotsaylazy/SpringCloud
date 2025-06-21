@@ -32,4 +32,9 @@ public class ProductServiceImpl implements ProductService {
     private void test111(){
         System.out.println("111");
     }
+
+
+    private void test222(){
+        System.out.println("222");
+    }
 }
