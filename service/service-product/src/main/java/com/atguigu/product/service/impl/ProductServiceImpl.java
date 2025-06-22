@@ -37,4 +37,8 @@ public class ProductServiceImpl implements ProductService {
     private void test222(){
         System.out.println("222");
     }
+
+    private void test333(){
+        System.out.println("333");
+    }
 }
